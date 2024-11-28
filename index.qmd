@@ -1369,5 +1369,5 @@ cameron.race\@education.gov.uk
 
 [Slides hosted on GitHub]()
 
-[Slides source code (GitHub)]()
+[Slides source code (GitHub)](https://github.com/dfe-analytical-services/public-dashboards-approach_20241128)
 :::
