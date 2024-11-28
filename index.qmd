@@ -1,0 +1,1373 @@
+---
+title: Our accessible statistics services journey
+subtitle: Explore education statistics platforms
+title-slide-attributes:
+  data-background-position: top
+  data-background-image: images/sanctuary-buildings.jpg
+  data-background-size: cover
+  data-background-opacity: "0.1"
+author: "Cam Race"
+institute: Department for Education
+format:
+  revealjs:
+    theme: [dark, dfe-quarto-slides.scss]
+    width: 120%
+    height: 120%
+    logo: images/DfE_logo_landscape.svg
+    footer: "Our accessible statistics services journey (Nov 2024)"
+    incremental: true
+class: smaller
+fig-cap-location: top
+layout-valign: center
+---
+
+## Introduction
+
+-   Badged statistician, turned product manager for explore education statistics (EES)
+
+-   Share our journey of creating useable and accessible dashboards and data visualisations for DfE
+
+-   In particular
+
+    -   who we are, what we do
+    -   the processes we use to publish dashboards alongside EES
+    -   what software we use
+    -   guidance and templates
+    -   how we check for accessibility
+    -   our attempts (so far) to bridge the gap between analysis and digital
+
+## DfE Statistics Services Unit (SSU)
+
+::::::::: columns
+::: {.column width="40%"}
+
+A small central resource providing advice and support to statisticians and those working with statistics across the department.
+
+We aim to raise standards and build capability - empowering our statisticians to develop themselves, their processes, and their products in line with the pillars of the code of practice for official statistics.
+
+We maintain several resources and tools to support DfE statisticians in their work.
+
+![Our team mascot - Frederick:](images/duckWaddle.gif){fig-align="center" width="50%"}
+:::
+
+::::::: {.column width="60%" .fragment}
+SSU is made up of four teams:
+
+::: box
+-   **Statistics Head of Profession Office**
+
+    Supports statistics processes and best practice in line with the GSS Code of Practice. Lead on supporting the statistics community.
+:::
+
+::: box
+-   **Statistics Development Team**
+
+    Provide learning and development support for analysts, lead on Reproducible Analytical Pipelines (RAP).
+:::
+
+::: box
+-   **Compare School and College Performance**
+
+    Product ownership for Compare School and College Performance
+:::
+
+::: box
+-   **Explore education statistics platforms**
+
+    Dedicated digital support to all statisticians and analysts publishing data publicly, leading the development of the explore education statistics (EES) service and public facing dashboards.
+    
+    
+    - 1x Statistician G7 (turned Product Owner)
+    - 1x Statistician SEO
+    - Contract in a small development team who've built and maintained the core EES website
+    - Have a contractor in building new hosting servers in Azure for public dashboards
+
+:::
+:::::::
+:::::::::
+
+## The work of SSU
+
+::::: columns 
+::: { .column .fragment}
+Our objectives:
+
+- **Platforms**
+
+  We maintain, enhance, and maximize the use of cutting-edge platforms for external data dissemination.
+
+- **Standards**
+
+  We maintain guidance, communicate standards, and facilitate a culture of continuous improvement.
+
+- **Internal impact**
+
+  We continuously engage with our internal stakeholders as a point of contact for all things statistics. We work with comms and private offices to ensure our statistics are impactful and handled correctly within the organization.
+
+- **Skills**
+
+  We support teams to build the skills they need to meet best practice standards
+
+- **Community**
+
+  We invest in our community to make sure it’s a great place to work and develop, providing professional support and advice to statisticians in DfE and building an engaged GSS community.
+:::
+
+::: column
+![SSU support offer poster:](ssu-support.svg){fig-align="center" width="60%"}
+:::
+:::::
+
+# Explore education statistics
+
+## A quick h-EES-tory
+
+::: {.fragment}
+
+Began in 2018, with user research to understand the needs of both producers and users of published education statistics [(public discovery report)](https://assets.publishing.service.gov.uk/media/5b3b395ded915d33d657a129/HiveIT_-_DfE_dissemination_discovery.pdf).
+
+:::
+
+::: {.fragment}
+
+That research identified two priorities:
+
+- We needed a more flexible, modern statistics publishing service to better support what our users need and the department's statistics function.
+
+- To continue to implement Reproducible Analytical Pipelines (RAP), and move to a single consistent open data standard underpinning all of our statistics releases, making all of our public data machine readable, our production more efficient, and upskilling staff to use R and Git.
+
+:::
+
+::: {.fragment}
+
+Following that we decided to break away from GOV.UK and instead build a bespoke .service.gov.uk (EES), using C# / .NET and Typescript / React, our [source code is availble on GitHub](https://github.com/dfe-analytical-services/explore-education-statistics).
+
+We've taken the service through the Alpha and Private Beta digital delivery phases, developing the platform's functionality in line with user feedback.
+
+:::
+
+::: {.fragment}
+
+In tandem to the EES development we worked on establishing a consistent open data structure with plans to use the launch of the service to embed and facilitate basic use of RAP at scale.
+
+:::
+
+::: {.fragment}
+
+In March 2020 we launched EES as a Public Beta Service and it has been our default route for statistics publishing ever since (replacing the previous method of publishing static documents on GOV.UK).
+
+:::
+
+::: {.fragment}
+During the pandemic, demand for dashboards boomed, and we have been expanding our service offering to also provide public hosting for R Shiny dashboards to complement our main EES service.
+
+:::
+
+::: {.fragment}
+We've been committed to further enhancing the core EES service in line with user needs since launch, our current development focus is adding stable API access to data published on the service.
+:::
+
+::: {.fragment}
+> A platform built by statisticians, for statisticians.
+
+:::
+
+## What is EES?
+
+Our product vision for the core EES website is:
+
+> Make it easier to publish engaging education statistics that all users can find, navigate, interact with and take away.
+
+::: {.fragment}
+
+It is a service with two parts - admin and public facing websites.
+
+TODO
+
+:::
+
+## Consistent open data
+
+::::: columns
+::: {.column width="60%" .fragment}
+Our consistent, machine readable open data is where the real power of the service lies.
+
+Poor consistency is a regular criticism we have heard from users and focusing on delivering comprehensive machine readable data with a query tool on top has helped us focus our automation efforts to the area with the most gain.
+:::
+
+::: {.column width="40%" .fragment}
+![Consistent open data standards](images/data-format.png)
+:::
+:::::
+
+::::: columns
+::: {.column width="60%" .fragment}
+Consistency is ensured by use of our “[**Data Screener**](https://github.com/dfe-analytical-services/dfe-published-data-qa)” App, which allows teams to independently test their datasets.
+
+It runs automated tests against formatting best practice and data harmonisation rules (e.g. consistent labels for key variables) and provides quick feedback and guidance where files fail.
+:::
+
+::: {.column width="40%" .fragment}
+![](images/data-screener.png)
+:::
+:::::
+
+::: {.fragment}
+
+Extensive guidance is made available to analysts via our [analysts guide](https://dfe-analytical-services.github.io/analysts-guide/statistics-production/ud.html).
+
+:::
+
+## EES admin
+
+A secure environment with publication and release based permission levels. Includes secure 24 hour pre-release access outside of DfE too.
+
+### Data upload and consistent surfacing
+
+::::: columns
+::: {.column width="40%"}
+The presentation of data items is powered from initial data and metadata upload. Including labeling, ordering and rule-based footnotes.
+
+We have a simple data replacement feature that allows you to swap in similar data files without having to recreate charts or tables.
+:::
+
+::: {.column width="60%"}
+![](images/admin-uploaded-data.png)
+:::
+:::::
+
+## EES admin
+
+### Release editor
+
+::::: columns
+::: {.column width="40%"}
+A content editor to create their release content, combining text blocks and data blocks into a HTML release page.
+
+Admin users are able to comment on content and style within a range of allow options.
+
+:::{.fragment}
+
+In recent months we've made some powerful tweaks:
+
+- removed italics from being an option and stripped all italics out of old content through automatic sanitisation
+
+- we've built in automatic accessibility checks to prevent common content isuses (e.g. [poor link text](https://github.com/dfe-analytical-services/dfeshiny/blob/main/data-raw/bad_link_text.R), missing alt text, using bold instead of headers and illogical header ordering)
+
+- the editor shows errors and prevents saving if any issues are present, a hard and strict line to prevent any issues in new content
+
+- found it gives publishers the information and guidance right at the point where it's most relevant
+
+- so far proving much more effective than upskilling / best practice sharing we'd been doing previously
+
+:::
+
+:::
+
+::: {.column width="60%"}
+![](images/admin-editor.png){width="75%" fig-align="center"}
+:::
+:::::
+
+## EES admin
+
+### Autonomous scheduling
+
+::::: columns
+::: {.column width="40%"}
+An autonomous publishing process, allows for efficient sign off and scheduling. Publications can be created and published quickly.
+
+We have also integrated a release sign off checklist to catch some of the regular things our teams may forget to address.
+:::
+
+::: {.column width="60%"}
+![](images/admin-sign-off.png)
+:::
+:::::
+
+## EES public
+
+### Release pages
+
+::::: columns
+::: {.column width="70%"}
+Accessible HTML reports ([example](https://explore-education-statistics.service.gov.uk/find-statistics/suspensions-and-permanent-exclusions-in-england)) provide users with engaging headline messages, and accordions help users to navigate to the parts of the report they want to see.
+
+There are links to related information and past releases as well as clear feedback routes and ability to subscribe to release notifications.
+
+Users can access glossary entries directly from release pages and embedded charts and tables linked directly to the underpinning datasets enhance the commentary.
+
+![](images/public-release-extras.png)
+:::
+
+::: {.column width="30%"}
+![](images/public-release-page.png)
+:::
+:::::
+
+## EES public
+
+### Table tool
+
+::::: columns
+::: {.column width="50%"}
+A [step-by-step query tool](https://explore-education-statistics.service.gov.uk/data-tables) that sits on top of our large open data files and allows our users to filter down to what they're interested in.
+
+Once created users can alter the order of their table and download it in either human or machine readable format.
+
+Users can save and share specific tables via our 'permalink' feature ([example](https://explore-education-statistics.service.gov.uk/data-tables/permalink/6ef0d431-7909-45a6-1d5b-08dd0254fb9b)) which has been helpful for us answering PQs and FOIs.
+
+Footnotes are automatically generated alongside data items in line with the rules statisticians set up within EES admin.
+:::
+
+::: {.column width="50%"}
+![](images/public-table-tool.png){width="75%" fig-align="center"}
+:::
+:::::
+
+## EES public
+
+### Data catalogue
+
+::::: columns
+::: {.column width="50%"}
+A single [catalogue](https://explore-education-statistics.service.gov.uk/data-catalogue) for all DfE’s published statistics.
+
+You can filter and preview datasets and we have plans to make this even more useful by adding geographic level and commonly requested variable filters to support speedier access to data sets of interest.
+
+![](images/dataset-preview.png){width="75%" fig-align="center"}
+:::
+
+::: {.column width="50%"}
+![](images/public-data-catalogue.png){width="55%" fig-align="center"}
+:::
+:::::
+
+## EES public
+
+### Methodology pages and glossary
+
+::::: columns
+::: {.column width="50%"}
+Each publication has a dedicated methodology page ([example](https://explore-education-statistics.service.gov.uk/methodology/key-stage-2-attainment)) where we can move a lot of the detailed content that is more suitable to expert users.
+
+We also have a service [glossary](https://explore-education-statistics.service.gov.uk/glossary) which collects key terms across the service in one place.
+
+![](images/public-glossary-2.png){fig-align="center"}
+:::
+
+::: {.column width="50%"}
+![](images/public-methodology.png){width="55%" fig-align="center"}
+:::
+:::::
+
+## EES public
+
+We're always iterating, and in general have found user feedback moving us away from accordions, for example on our 'catalogue' style pages
+
+::::: columns
+::: {.column width="50%}
+
+![](images/findstatsold.png){width="65%" fig-align="center"}
+:::
+
+::: {.column width="50%"}
+
+![](images/findstatsnew.png){width="60%" fig-align="center"}
+:::
+
+:::::
+
+## EES public
+
+Some of the quick analysis we did at the time on this change
+
+:::{.fragment}
+
+![](images/findstatsanalysis.png){width="75%" fig-align="center"}
+
+:::
+
+
+## EES public
+
+Further to this, we've also been researching and prototyping a new left hand navigation for the service, to help users find their way around the service more easily, and prevent them getting lost within large accordion sections without any indication of their location on the page.
+
+::: {.fragment}
+
+![](images/left_nav_prototype.gif){fig-align="center" width="70%"}
+
+:::
+
+## Accessibility example moving to WCAG 2.2
+
+One particular change we found was in drag and drop interfaces, it was on our hit list anyway, though with the introduction of WCAG 2.2 it really highlighted an issue we had.
+
+- On the EES service we offer the ability to reorder and customise the locations of table headers and rows in our table tool
+
+- This relied heavily on drag and drop
+
+- We put a good amount of effort into redesigning custom components to allow for accessible routes
+
+- One our proudest moments as a service was during an external accessibility audit watching in person, a keyboard user successfully reorder tables using it and shrug the task off as 'no problem'!
+
+- Demo use of [reordering in the table tool](https://explore-education-statistics.service.gov.uk/data-tables/graduate-labour-markets/2023?subjectId=2349737f-73cd-433f-4589-08dc8a3f6015)
+
+## Use of Google Analytics
+
+Teams automatically get access to a wealth of user analytics to understand how their products are being used.
+
+We have R scripts that connect to the Google analytics API and pull down data, joining with other data sets such as webscrapes of the service, and then storing permanently in our own SQL database on the Analyse and Modelling severs (soon to move to Databricks / Unity Catalog).
+
+We currently share this headline data through our own R Shiny dashboards to analysts in the department (one for EES and one for all supporting dashboards) and provide more detailed information from Google Analytics on request.
+
+::: {layout-nrow="1"}
+![User numbers over time](images/ga-users-over-time.png)
+
+![New users vs established users](images/ga-new-vs-established.png)
+
+![Where do new users come from](images/ga-referrer.png)
+
+![Number who used service in past 30 days, 7 days, and 1 day](images/ga-repeated-by-day.png)
+:::
+
+::::: columns
+::: {.column width="25%"}
+EES sessions by day since launch:
+:::
+
+::: {.column width="75%"}
+![](images/ees-all-time-sessions.png)
+:::
+:::::
+
+## Use of Google Analytics
+
+We encourage our publication teams to make use of the analytics to build an understanding of how their users interact with their product and to inform their future release development.
+
+Google Analytics isn't perfect, it is reliant on cookie consent and therefore does not represent the whole picture. It has been useful to help us to compare scale across publications and from release to release but we have had frustrations with it.
+
+We have also used Google Analytics to support:
+
+-   Monitoring the impact and value of EES feature development. For example, did moving that button over there actually help more people find it?
+-   EES service KPIs. Are more users coming to our service from organic routes?
+-   A review of DfE's publication estate and to help make cases for change where we could prune areas our efforts look to not be adding as much value. For example, to support dashboard retirement.
+-   To understand usage of our supporting service, like the analysts guide. Are publishers reading the guidance we put out?
+
+## Data visualisation
+
+::::: columns
+
+::: {.column width="50%"}
+
+As we're a central support team for statisticians, we are also the departments representatives on several cross-government groups
+
+[Analysis Function guidance hub](https://analysisfunction.civilservice.gov.uk/policy-store/)
+
+[Data Visualisation guidance](https://analysisfunction.civilservice.gov.uk/area_of_work/data-visualisation/) - lots and lots here, including free e-learning
+
+We wrote the cross-government [colours guidance for use in charts](https://analysisfunction.civilservice.gov.uk/policy-store/data-visualisation-colours-in-charts/)
+
+![](images/choose_own_palette.png){fig-align="center" width="60%"}
+
+:::
+
+::: {.column width="50%"}
+
+![](images/categorical_palette.png){fig-align="center"}
+
+:::
+
+:::::
+
+## Data visualisation - choosing a chart
+
+:::box
+
+![](images/whatchart.png){fig-align="center"}
+:::
+
+## Data visualisation - choosing a chart
+
+::: box
+
+![](images/whatchart_simple.png){fig-align="center"}
+:::
+
+- Keep it simple!
+
+## Data visualisation
+
+::: box
+
+![](images/default_line_styling.png){fig-align="center" width="55%"}
+:::
+
+## Data visualisation
+
+Improved line chart using the afcharts R package (based on the best practice guidance)
+
+::::: columns
+
+::: {.column width="60%"}
+
+:::box
+
+![](images/better_line_styling.png){fig-align="center" width="95%"}
+:::
+
+:::
+
+::: {.column width="40%"}
+
+- removed grey background
+
+- fewer gridlines
+
+- used the af colours
+
+- labelled lines directly to reduce reliance on colour (text should be bigger or black for better contrast)
+
+:::
+
+:::::
+
+## Data visualisation
+
+
+Usually, less is more, keep it simple to make it effective
+
+Never release data in a chart only - always have a table equivalent
+
+ - Provide an accessible route
+ 
+ - Makes it easier to take the data away if reusing elsewhere
+  
+ - Some users also just prefer a table!
+ 
+::::: columns
+  
+::: {.column width="50%"}
+
+
+:::
+
+::: {.column width="50%"}
+
+![](images/ees_chart_table.png){fig-align="center" width="80%"}
+
+:::
+
+:::{.column width="50%"}
+
+![](images/ees_tab_chart.png){fig-align="center" width="80%"}
+
+:::
+
+:::::
+
+# How do dashboards fit in?
+
+## EES, dashboards and other services
+
+::::: columns
+::: {.column width="60%"}
+EES is our primary dissemination route and gives us a core service for transparent public facing statistics.
+
+We tried to build it in a way that would work well with other secondary services that support more specific user needs or behaviors. These can often make use of the same data sources and our aim is to reduce data duplication and make our processes more efficient via use of APIs.
+
+> Our aim is to do transparency once, and feed everything else from there
+
+These secondary services could be R Shiny dashboards or tailored digital services (e.g. [Compare School and College Performance](https://www.compare-school-performance.service.gov.uk/)).
+
+We have developed our use of R Shiny significantly over recent years as demand has grown, and have created supporting materials:
+
+-   [DfE Shiny template](https://github.com/dfe-analytical-services/shiny-template)
+-   [DfE dashboards guidance](https://dfe-analytical-services.github.io/analysts-guide/writing-visualising/dashboards.html)
+-   [dfeshiny](https://github.com/dfe-analytical-services/dfeshiny) R package (to complement our use of [shinyGovstyle](https://github.com/moj-analytical-services/shinyGovstyle))
+:::
+
+::: {.column width="40%"}
+![](images/ees-system.png){fig-align="center"}
+:::
+:::::
+
+
+## Dashboards
+
+:::{.fragment}
+
+What is a dashboard?
+
+:::
+
+-   Something visual, that can be regularly refreshed with new data for minimal effort
+
+-   Sometimes a way to provide specific interactivity for users
+
+-   Effectively a mini / lightweight digital service, often made by analysts or data scientists
+
+-   Are an excellent route for prototyping new features for larger services like the main EES website, analysts can make interactive visualisations in a fraction of the time that software engineers can as tools like R Shiny are designed for this purpose
+
+::: {.fragment}
+
+This is where the fun comes in, as analysts rarely have experience of digital services...
+
+:::
+
+## Dashboards
+
+::::: columns
+
+::: {.column width="50%"}
+
+We provide the publishing platform and act as the gatekeepers (noone can publish R Shiny publicly without us)
+
+- We currently have around 20 public facing dashboards in R Shiny
+
+- Some dashboards focus in on a specific data set (e.g. attendance)
+
+- Others are a summary / compendium across an area (e.g. Children's Social Care)
+
+- Some are interactive replacements for previous Excel tools (e.g. LAIT)
+
+:::
+
+::: {.column width="50%"}
+
+![](images/apps.png){width="80%"}
+![](images/lait.png){width="80%"}
+
+:::
+
+:::::
+
+## Dashboard process diagram
+
+TODO
+
+Team builds dashboard -> We review -> We help them publish (using GitHub actions workflows) -> Users access at URL
+
+Existing data can come from multiple sources, EES, other sources in the department, or even outside of the department.
+
+Aim is that most of our dashboards will just have a direct connection to the EES API once launched, currently have a proof of concept and are just conducting our final interviews on the closed testing of the EES API.
+
+
+## What is R Shiny?
+
+::::: columns
+::: {.column width="50%"}
+![](images/r.png){fig-align="center" width="55%"}
+:::
+
+::: {.column width="50%"}
+![](images/rshiny.png){fig-align="center"}
+:::
+:::::
+
+-   Firstly, R itself is an open source programming language designed for statistical computing and data visualisation
+
+-   R Shiny is a framework for building [single page web applications](https://developer.mozilla.org/en-US/docs/Glossary/SPA) using R
+
+-   It is fully extensible using JavaScript, HTML, and CSS
+
+
+## Why use R Shiny?
+
+::::: columns
+::: {.column width="50%"}
+
+-   R is used widely within statisticians and analysts at DfE, as well as across government and in academia
+
+-   As it's open source, it's free to use, and there's a wealth of community led, free training and support available
+
+-   As it's open source, we can contribute to and build on what already exists (examples later)
+
+-   As it's just a wrapper on JavaScript, HTML, and CSS, it's possible to extend and customise, especially important when it comes to styling and accessibility!
+:::
+
+::: {.column width="50%"}
+
+![](images/rstudio.png){fig-align="center"}
+
+:::
+:::::
+
+## How have we got here?
+
+-   From 2017 to 2021, we only had a couple of public dashboards at any one time on a subscription to the shinyapps.io service (externally hosted outside of the department), almost no formal support or governance
+
+-   A couple of years ago, the demand started to kick in hard (post-pandemic boom)
+
+-   Everybody was wanting a 'dashboard' - flooding with requests and starting us needing to take it seriously
+
+-   We've been building a formal strategy and governance / support around it since
+
+-   This summer, we split my team in two, separating out some of the statistics specific support so I could dedicate two of us in the unit to our digital dissemination services (EES and dashboards) - bridging that analytical / digital gap
+
+-   Currently, we're the process of formalising our support and guidance to become a more 'mature' dashboarding service
+
+::: {.fragment}
+
+![Our first dashboard launched in 2017](images/firstdashboard.png){fig-align="center" width="70%"}
+
+:::
+
+## Public dashboards guidance
+
+- Two parts, [general for public dashboards](https://dfe-analytical-services.github.io/analysts-guide/writing-visualising/dashboards.html) and then [R Shiny specific](https://dfe-analytical-services.github.io/analysts-guide/writing-visualising/dashboards_rshiny.html)
+
+- Built around statistics code of practice and GDS service standard
+
+- All dashboard code must be open-source on our [dfe-analytical-services GitHub area](https://github.com/dfe-analytical-services)
+
+- Key areas include:
+    
+  - User needs - always start with why? Could the need be met by an existing service? Does it even need to be a 'dashboard'?
+  - Software - (we have decided to only support R Shiny or Python for public products)
+  - Accessibility
+  - Consistent styling
+  - Performance and quality assurance
+  - User engagement and analytics
+
+::::: columns
+::: {.column width="50%}
+
+:::{.fragment}
+
+![](images/dashboards_guidance.png){fig-align="center" width="90%"}
+:::
+
+:::
+
+::: {.column width="50%"}
+
+::: {.fragment}
+
+![](images/dashboards_guidance_rshiny.png){fig-align="center" width="90%"}
+:::
+
+:::
+::::
+
+## R Shiny template
+
+::::: columns
+
+::: {.column width="50%"}
+
+We have a template R Shiny app, with a number of features and standard things build in.
+
+- template is hosted in GitHub so it can be used to create a new repository from
+
+- has built in pre-commit hooks that prevent accidental committing of unpublished data
+
+:::{.fragment}
+
+A problem / question we've been having a lot recently...
+
+:::
+
+- Is it a template for a dashboard, or an example of a dashboard, or is it both!
+
+- We want to show example code for as many things as possible to make it easier for analysts to learn and copy
+
+- However, we also often see excess code from the template being left in when reviewing them, as analysts don't always realise everything they need to delete
+
+- The more examples we add to the template, the more intimidating it becomes and harder it is to use as a starting point
+
+- Particularly found the issue for the README - is it a README for the template, or a template README?
+
+- Our solution is to have both a template README and a README template, and I suspect we'll be creating a minimal template dashboard and then converting our existing 'template' app into a showcase / example app...
+
+:::
+
+::: {.column width="50%}
+
+![](images/shinytemplate_github.png){fig-align="center"}
+
+![](images/rshinytemplate.png){fig-align="center"}
+
+:::
+
+:::::
+
+## dfeshiny package
+
+-   Early this year, we decided to move to building bespoke packages (Software Development Kits / Libraries)
+
+-   Like the template, gives a single place for the latest version of the code
+
+-   Unlike the template, analysts building dashboards can easily update their package version to get the latest changes!
+
+-   Also, another bonus over the template is that we can hide away of a lot of the more complex code inside the package, making it more beginner friendly and reducing the effort required from analysts
+
+-   Allows us to make DfE specific components like the header with a DfE logo and link
+
+-   We also use it as a testing ground for new common components before moving them into the cross-government shinyGovstyle package
+
+:::{.fragment}
+
+![](images/dfeshiny.png){fig-align="center" width="55%"}
+
+:::
+
+## dfeshiny package
+
+Simple example - created a function for accessible and secure links that open in new tabs, analysts don't need to worry about the markup, just the content!
+
+Code for the external_link() function
+
+```r
+#' External link
+#'
+#' Intentionally basic wrapper for HTML anchor elements making it easier to
+#' create safe external links with standard and accessible behaviour. For more
+#' information on how the tag is generated, see \code{\link[htmltools]{tags}}.
+#'
+#' @description
+#' It is commonplace for external links to open in a new tab, and when we do
+#' this we should be careful...
+#'
+#' This function automatically adds the following to your link:
+#' * `target="_blank"` to open in new tab
+#' * `rel="noopener noreferrer"` to prevent [reverse tabnabbing](
+#' https://owasp.org/www-community/attacks/Reverse_Tabnabbing)
+#'
+#' By default this function also adds "(opens in new tab)" to your link text
+#' to warn users of the behaviour.
+#'
+#' This also adds "This link opens in a new tab" as a visually hidden span
+#' element within the HTML outputted to warn non-visual users of the behaviour.
+#'
+#' The function will error if you end with a full stop, give a warning for
+#' particularly short link text and will automatically trim any leading or
+#' trailing white space inputted into link_text.
+#'
+#' If you are displaying lots of links together and want to save space by
+#' avoiding repeating (opens in new tab), then you can set add_warning = FALSE
+#' and add a line of text above all of the links saying something like 'The
+#' following links open in a new tab'.
+#'
+#' Related links and guidance:
+#'
+#' * [Government digital services guidelines on the use of links](
+#' https://design-system.service.gov.uk/styles/links/)
+#'
+#' * [Anchor tag HTML element and its properties](
+#' https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a)
+#'
+#' * [WCAG 2.2 success criteria 2.4.4: Link Purpose (In Context)](
+#' https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context)
+#'
+#' * [Web Accessibility standards link text behaviour](
+#' https://www.w3.org/TR/WCAG20-TECHS/G200.html)
+#'
+#' @param href URL that you want the link to point to
+#' @param link_text Text that will appear describing your link, must be
+#' descriptive of the page you are linking to. Vague text like 'click here' or
+#' 'here' will cause an error, as will ending in a full stop. Leading and
+#' trailing white space will be automatically trimmed. If the string is shorter
+#' than 7 characters a console warning will be thrown. There is no way to hush
+#' this other than providing more detail.
+#' @param add_warning Boolean for adding "(opens in new tab)" at the end of the
+#' link text to warn users of the behaviour. Be careful and consider
+#' accessibility before removing the visual warning.
+#' @return shiny.tag object
+#' @export
+#'
+#' @examples
+#' external_link("https://shiny.posit.co/", "R Shiny")
+#'
+#' external_link(
+#'   "https://shiny.posit.co/",
+#'   "R Shiny",
+#'   add_warning = FALSE
+#' )
+#'
+#' # This will trim and show as 'R Shiny'
+#' external_link("https://shiny.posit.co/", "  R Shiny")
+#'
+#' # Example of within text
+#' shiny::tags$p(
+#'   "Oi, ", external_link("https://shiny.posit.co/", "R Shiny"), " is great."
+#' )
+#'
+#' # Example of multiple links together
+#' shiny::tags$h2("Related resources")
+#' shiny::tags$p("The following links open in a new tab.")
+#' shiny::tags$ul(
+#'   shiny::tags$li(
+#'     external_link(
+#'       "https://shiny.posit.co/",
+#'       "R Shiny documentation",
+#'       add_warning = FALSE
+#'     )
+#'   ),
+#'   shiny::tags$li(
+#'     external_link(
+#'       "https://www.python.org/",
+#'       "Python documentation",
+#'       add_warning = FALSE
+#'     )
+#'   ),
+#'   shiny::tags$li(
+#'     external_link(
+#'       "https://nextjs.org/",
+#'       "Next.js documentation",
+#'       add_warning = FALSE
+#'     )
+#'   )
+#' )
+#'
+external_link <- function(href, link_text, add_warning = TRUE) {
+  if (!is.logical(add_warning)) {
+    stop("add_warning must be a TRUE or FALSE value")
+  }
+
+  # Trim white space as I don't trust humans not to accidentally include
+  link_text <- stringr::str_trim(link_text)
+
+  # Create a basic check for raw URLs
+  is_url <- function(text) {
+    url_pattern <- "^(https://|http://|www\\.)"
+    grepl(url_pattern, text)
+  }
+
+  # Check for vague link text on our list
+  if (is_url(link_text)) {
+    stop(paste0(
+      link_text,
+      " has been recognised as a raw URL, please change the link_text value",
+      "to a description of the page being linked to instead"
+    ))
+  }
+
+  # Check against curated data set for link text we should banish into room 101
+  if (tolower(link_text) %in% dfeshiny::bad_link_text$bad_link_text) {
+    stop(
+      paste0(
+        link_text,
+        " is not descriptive enough and has has been recognised as bad link",
+        " text, please replace the link_text argument with more descriptive",
+        " text."
+      )
+    )
+  }
+
+  # Check if link text ends in a full stop
+  if (grepl("\\.$", link_text)) {
+    stop("link_text should not end with a full stop")
+  }
+
+  # Give a console warning if link text is under 7 characters
+  # Arbritary number that allows for R Shiny to be link text without a warning
+  if (nchar(link_text) < 7) {
+    warning(paste0(
+      "the link_text: ", link_text, ", is shorter than 7 characters, this is",
+      " unlikely to be descriptive for users, consider having more detailed",
+      " link text"
+    ))
+  }
+
+  # Assuming all else has passed, make the link text a nice accessible link
+  if (add_warning) {
+    link_text <- paste(link_text, "(opens in new tab)")
+    hidden_span <- NULL # don't have extra hidden text if clear in main text
+  } else {
+    hidden_span <-
+      htmltools::span(class = "sr-only", " (opens in new tab)")
+  }
+
+  # Create the link object
+  link <- htmltools::tags$a(
+    href = href,
+    htmltools::HTML(paste0(link_text, hidden_span)), # white space hack
+    target = "_blank",
+    rel = "noopener noreferrer",
+    .noWS = c("outside")
+  )
+
+  # Attach CSS from inst/www/css/visually-hidden.css
+  dependency <- htmltools::htmlDependency(
+    name = "sr-only",
+    version = as.character(utils::packageVersion("dfeshiny")[[1]]),
+    src = c(href = "dfeshiny/css"),
+    stylesheet = "sr-only.css"
+  )
+
+  # Return the link with the CSS attached
+  return(htmltools::attachDependencies(link, dependency, append = TRUE))
+}
+```
+
+## dfeshiny package
+
+Simple example - created a function for accessible and secure links that open in new tabs, analysts don't need to worry about the markup, just the content!
+
+Code to create a custom list of 'bad' link text to validate against in that function
+
+```r
+bad_link_text <- data.frame(
+  bad_link_text = c(
+    # one word examples
+    "click", "csv", "continue", "dashboard", "document", "download", "file",
+    "form", "guidance", "here", "info", "information", "jpeg", "jpg", "learn",
+    "link", "more", "next", "page", "pdf", "previous", "read", "site", "svg",
+    "this", "web", "webpage", "website", "word", "xslx",
+    # two word examples
+    "click here", "click this link", "download csv", "download document",
+    "download file", "download here", "download jpg", "download jpeg",
+    "download pdf", "download png", "download svg", "download word",
+    "download xslx", "further information", "go here", "learn more",
+    "link to", "read more", "this page", "visit this", "web page", "web site",
+    "this link"
+  )
+)
+
+usethis::use_data(bad_link_text, overwrite = TRUE)
+```
+
+## dfeshiny package
+
+Simple example - created a function for accessible and secure links that open in new tabs, analysts don't need to worry about the markup, just the content!
+
+CSS that we attach to the function
+
+```css
+/* Taken from https://webaim.org/techniques/css/invisiblecontent/#:~:text=display%3Anone%20or%20visibility%3A%20hidden,is%20ignored%20by%20screen%20readers. */
+.sr-only {
+  position:absolute;
+  left:-10000px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
+```
+
+
+## dfeshiny package
+
+What an analyst sees
+
+```
+# One line of code
+dfeshiny::external_link("https://www.gov.uk", "GOV.UK")
+
+# Returns the following HTML
+<a href="https://www.gov.uk" target="_blank" rel="noopener noreferrer">GOV.UK (opens in new tab)</a>
+
+Warning message:
+In dfeshiny::external_link("https://www.gov.uk", "GOV.UK") :
+  the link_text: GOV.UK, is shorter than 7 characters, this is unlikely to be descriptive for users, consider having more detailed link text
+```
+
+### We've made it customisable
+
+We've also built in the option to remove the appending of (opens in new tab) using an `add_warning=` argument, this could be used if showing multiple links in a list with a separate warning about new tabs covering them all, in that case, it will still automatically add in a warning for screen readers who will lack the same visual context.
+
+```
+dfeshiny::external_link("www.google.co.uk", "Google Search Engine", add_warning=FALSE)
+
+<a href="www.google.co.uk" target="_blank" rel="noopener noreferrer">Google Search Engine<span class="sr-only"> (opens in new tab)</span></a>
+
+```
+
+The CSS for .sr-only class has been created in the package and attached automatically to the function behind the scenes.
+
+### Expanding to cover
+
+- Being able to write the logic and code in one place, and then everyone else (including across government) can benefit and speed up their development
+
+- Basic interactive charts (using ggplot2 and ggiraph) for hover and click events
+
+- Interactive maps using leaflet
+
+- Navigation - currently testing out a new left hand navigation component using links in a navigation container instead of tabs
+
+## shinyGovstyle package
+
+::::: columns
+
+::: {.column width="50%"}
+
+-   Core GDS components built into R Shiny functions with styling using the GOV.UK frontend CSS
+
+-   R package developed in MoJ, that had been archived in 2021, though I have recently revived it along with colleagues at HMRC and DHSC
+
+-   We take static cuts of the GDS CSS on each update and attach into the package, attaching the classes to our custom functions and components, and log any changes we need to make to the CSS to make it work with R Shiny
+
+-   One improvement we've made to the package is moving to use rem units for fonts (original package had a 'rem-remover' script as there used to be issues with rem units and R Shiny styling)
+
+:::
+
+::: {.column width="50%"}
+
+![](images/shinygovstyle.png){fig-align="center"}
+
+:::
+
+::::::
+
+## shinyGovstyle package
+
+::::: columns
+
+::: {.column width="35%"}
+
+![](images/shinygovstyle_examples.png){fig-align="center"}
+
+:::
+
+::: {.column width="65%}
+
+![](images/shinygovstylecss.png){fig-align="center" width="120%"}
+
+:::
+
+:::::
+
+## Deployments
+
+All dashboard deployments are done using GitHub Actions, we manage this for teams
+
+Every time a commit is pushed to the main branch (or a pull request is merged in), a new deployment is triggered
+
+[Example workflow file in our R Shiny template](https://github.com/dfe-analytical-services/shiny-template/blob/main/.github/workflows/deploy-shiny.yaml) - `.github/workflows/deploy-shiny.yaml`
+
+```
+on:
+  push:
+    branches:
+      - main
+      - development
+
+name: shinyapps.io deploy
+
+jobs:
+  deployShiny:
+    runs-on: ubuntu-latest
+    
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
+      - name: Set env vars (dev)
+        if: endsWith(github.ref, '/development')
+        run: |
+          echo "SHINYAPP_NAME='dev-dfe-shiny-template'" >> $GITHUB_ENV
+          echo "SHINYAPP_OVERFLOW_NAME='dev-dfe-shiny-template-overflow'">> $GITHUB_ENV
+      - name: Set env vars (prod)
+        if: endsWith(github.ref, '/main')
+        run: |
+          echo "SHINYAPP_NAME='dfe-shiny-template'">> $GITHUB_ENV
+          echo "SHINYAPP_OVERFLOW_NAME='dfe-shiny-template-overflow'">> $GITHUB_ENV
+        
+      - name: Restore renv snapshot
+        shell: Rscript {0}
+        run: |
+          if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
+          renv::restore()
+          
+      - name: Install rsconnect
+        shell: Rscript {0}
+        run: |
+          if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
+          renv::install("rsconnect")
+         
+# Tokens are stored as secrets in GitHub to make sure only DfE analysts can publish apps in our shiny.io area
+# Navigate to Settings > Secrets to add and view secrets. These can also be things like admin login and passwords for SQL databases.
+# Get in touch with the Explore education statistics platforms team if you need to add the below secrets to publish to shinyapps.io
+          
+      - name: Push to shiny.io
+        run: >
+          Rscript
+          -e "rsconnect::setAccountInfo(name = 'department-for-education', token = '${{secrets.SHINYAPPS_TOKEN}}', secret = '${{secrets.SHINYAPPS_SECRET}}')"
+          -e "rsconnect::deployApp(appName=${{env.SHINYAPP_NAME}}, forceUpdate = TRUE)"
+          -e "rsconnect::deployApp(appName=${{env.SHINYAPP_OVERFLOW_NAME}}, forceUpdate = TRUE)"
+```
+
+We own the subscription and the tokens / secrets needed to deploy, so only our team can authorise new deployments
+
+## Estimated timeframes for development
+
+As an experiment we built a new dashboard from scratch to deployment in 30 mins using our template in a live coding session for a statisticians away day, which highlights the speed that development can happen at!
+
+Recently, we've been gathering inputs from a range of analysts working with R Shiny across DfE and other departments and come up with this table of rough estimates for development timelines.
+
+::: {.fragment}
+
+![](images/development_time.png){fig-align="center" width="70%"}
+
+:::
+
+
+-   Our aim is through improving our support offer, not only can we improve quality and consistency, we can reduce these times by as much as half
+
+## Accessibility testing and guidance
+
+We submit the core EES site for a full accessibility audit each year, retesting our changes 6 months later.
+
+In our latest one we extended it to include our R Shiny template, and 2 public shiny dashboards too. This tests with multiple users of different accessibility needs using both desktop and mobile devices and provides a comprehensive report for any areas that fail.
+
+:::box
+
+![](images/dac-testing.png){width="65%"}
+
+:::
+
+We were lucky enough to visit the [Digital Accessibility Centre (DAC)](https://www.digitalaccessibilitycentre.org/) during the testing window and were able to speak to the testers as they were carrying out our audit and see their experiences first hand.
+
+## Accessibility resources list
+
+We've started a list on our analysts guide pointing to helpful [accessibility resources](https://dfe-analytical-services.github.io/analysts-guide/learning-development/accessibility.html). We also are proud to have two DfE accessibility champions in our area! (as well as many others who generally champion accessibility!)
+
+::: {.fragment}
+
+::::: columns
+
+::: {.column width="50%"}
+
+### Free tools we commonly use
+
+- [axe DevTools](https://chromewebstore.google.com/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd?pli=1), free Google Chrome extension, we recommend this for quick scans of markup on pages
+
+- Google Lighthouse, built into Google Chrome browser, and will catch some basic accessibility things amongst other web related issues
+
+- Windows Magnifier
+
+- NVDA screen reader
+
+:::
+
+::: {.column width="50%"}
+
+![](images/axe_devtools.png){fig-align="center"}
+
+:::
+
+:::::
+
+:::
+
+## Bookmarklets
+
+‘Bookmarklets’ are bookmarks that instead of saving a URL to a page, save a piece of Javascript code that executes on the page you are looking at. 
+
+There’s some nice [accessibility focused bookmarklets on the DfE design manual](https://design.education.gov.uk/accessibility/assurance) that highlight specific types of mark up such as headers and lists so you can easily check if it matches what you’d expect while on any webpage. Very nifty and low effort too!
+
+:::box
+
+![](images/bookmarklets.png){fig-align="center" width="70%"}f
+
+:::
+
+## How do we review dashboards?
+
+### Our own review process
+
+::: {.fragment}
+
+For accessibility specifically we check:
+
+:::
+
+- Markup is semantic, aria roles are used correctly, colour contrast, using axe devtools
+
+- Check keyboard navigation can reach all features and is in a logical order, check there's a skip to main content link
+
+- Using the free NVDA download, check navigation with a screen reader
+
+- Use Windows Magnifier to check the page is usable at higher zoom levels and colour inversions
+
+- Link text is descriptive and appropriate
+
+- Download file accessibility ([spreadsheets checklist](https://analysisfunction.civilservice.gov.uk/policy-store/making-spreadsheets-accessible-a-brief-checklist-of-the-basics/))
+
+- Responsiveness on mobile devices, and zoom up to 400% without content spill
+
+- Our core components are used, and are using the latest versions (e.g. cookie consent)
+
+- Plus anything else we've had flagged in past external audits!
+
+- Anything that is a problem we either help the team to fix immediately, or log in the statement and create a public backlog for in GitHub that the team continues to work on after initial publication
+
+:::{.fragment}
+
+### Periodic larger audits
+
+:::
+
+::: {.fragment}
+
+We also do less frequent, larger checks on key user journeys and new components...
+
+:::
+
+- Use an agency like [Digital Accessibility Centre (DAC)](https://www.digitalaccessibilitycentre.org/) to thoroughly test with real users at least once a year
+
+- Use the empathy lab in SPP to test with Dragon (paid voice control software we don't have readily available in the team), and ZoomText (magnifying software for low vision) 
+  - we've been caught out by colour inverting being subtly different to what is built into Windows, we had one particular button almost completely disappeared in ZoomText that we'd never spotted in other software
+
+
+## How do dashboards work with GDS service assessments?
+
+-   We had initial conversations with GDS, who said we should treat dashboards as prototypes, gathering user feedback regularly, and then progress from there
+
+-   Our strategy and guidance is based around the GDS service standard, taking from many of the numbered points of the standard
+
+-   As a dashboard can be created and published in weeks (or even days!), we've prioritised getting dashboards out quickly and being user led in their design over a more formal service assessment process
+
+-   Currently we assess dashboards for suitability internally and then work with teams to publish and iterate on them
+
+-   We should have new and improve servers in the new year for better logging and scaling to demand, as a part of this move we want to do a big sweep of some of the old dashboards, decommissioning and updating to the latest standards
+
+-   We want to revisit this with GDS things have settled down next year
+
+
+::: {.fragment}
+
+### We treat each dashboard is a digital service in its own right
+
+:::
+
+-   my motto to encourage analysts to engage with the GDS service standards
+
+-   each dashboard must have a clearly defined user need
+
+-   each dashboard must have its own accessibility statement
+
+-   each dashboard has its own individual review, and business contacts
+
+## What next?
+
+-   Working towards v1.0 of our template and supporting packages for dashboards
+
+-   Do a big retrospective sweep of the old dashboards, making sure they all meet our latest standards
+
+-   Next full external accessibility audit in Spring 2025
+
+-   Aiming for live assessment of explore education statistics service Summer / Autumn 2025
+
+-   Revisit our dashboard approach, exploring ways we could bring service assessments to dashboards
+
+-   Continue to build the bridge between analysis and digital
+
+-   Keen to hear if there's any relevant contacts who might be helpful for us to talk to!
+
+::: center-content
+## Any questions?
+
+cameron.race\@education.gov.uk
+
+[Slides hosted on GitHub]()
+
+[Slides source code (GitHub)]()
+:::
