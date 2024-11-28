@@ -182,7 +182,7 @@ Our product vision for the core EES website is:
 
 It is a service with two parts - admin and public facing websites.
 
-TODO
+![](images/ees_diagram.png){fig-align="center" width="80%"}
 
 :::
 
@@ -644,14 +644,21 @@ We provide the publishing platform and act as the gatekeepers (noone can publish
 
 ## Dashboard process diagram
 
-TODO
-
-Team builds dashboard -> We review -> We help them publish (using GitHub actions workflows) -> Users access at URL
-
 Existing data can come from multiple sources, EES, other sources in the department, or even outside of the department.
 
-Aim is that most of our dashboards will just have a direct connection to the EES API once launched, currently have a proof of concept and are just conducting our final interviews on the closed testing of the EES API.
+:::box
 
+![](images/dashboard_updates.png){fig-align="center"}
+
+:::
+
+## Dashboard parts diagram
+
+:::box
+
+![](images/dashboard_parts.png){fig-align="center" width="40%}
+
+:::
 
 ## What is R Shiny?
 
@@ -1367,7 +1374,7 @@ We also do less frequent, larger checks on key user journeys and new components.
 
 cameron.race\@education.gov.uk
 
-[Slides hosted on GitHub]()
+[Slides hosted on GitHub]() [coming soon...]
 
 [Slides source code (GitHub)](https://github.com/dfe-analytical-services/public-dashboards-approach_20241128)
 :::
